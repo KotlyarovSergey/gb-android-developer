@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">HW01-StartOfWork</string>
+    <string name="btn_reset_title">Сброс</string>
+    <string name="tv_status_title">Все места свободны</string>
+    <string name="tv_status_free_seats">Осталось мест: </string>
+    <string name="tv_status_overload">Пассажиров слишком много!</string>
+    <string name="tv_counter_title">0</string>
 </resources>
