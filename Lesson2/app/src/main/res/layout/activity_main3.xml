@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity3">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:background="@color/grey"
+        android:layout_margin="5dp"
+        android:textColor="@color/black"
+        android:layout_centerInParent="true"
+        tools:text="@tools:sample/lorem/random"/>
+
+    <Button
+        android:id="@+id/bnt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cornerRadius="5dp"
+        android:text="Под и По центру"
+        android:layout_below="@+id/text"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/bnt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cornerRadius="5dp"
+        android:layout_above="@+id/text"
+        android:layout_alignParentRight="true"
+        android:text="Над и По правому краю"/>
+
+    <Button
+        android:id="@+id/bnt3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cornerRadius="5dp"
+        android:text="ToRigtOf"
+        android:layout_toRightOf="@id/bnt1"
+        android:layout_below="@id/bnt1"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cornerRadius="5dp"
+        android:layout_centerInParent="true"
+        android:text="Поверх"/>
+
+
+</RelativeLayout>
