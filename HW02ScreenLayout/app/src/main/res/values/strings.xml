@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HW02ScreenLayout</string>
+    <string name="top_text">верхняя строчка, настроенная из кода</string>
+    <string name="bottom_text">нижняя строчка, настроенная из кода</string>
+</resources>

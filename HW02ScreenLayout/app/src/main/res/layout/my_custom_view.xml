@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/topFrame"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@color/black"
+        android:layout_margin="16dp">
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/topText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_toRightOf="@id/topFrame"
+        android:layout_alignTop="@id/topFrame"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:lines="1"
+        tools:text="@tools:sample/lorem/random"
+        android:ellipsize="end"/>
+
+    <TextView
+        android:id="@+id/bottomText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_toRightOf="@id/topFrame"
+        android:layout_alignBottom="@id/topFrame"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:lines="1"
+        tools:text="@tools:sample/lorem/random"
+        android:ellipsize="middle"/>
+
+    <FrameLayout
+        android:id="@+id/bottomFrame"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/topFrame"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp">
+
+    </FrameLayout>
+</RelativeLayout>
