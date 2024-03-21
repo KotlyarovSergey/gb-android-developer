@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">HW03ConsrtainLayout</string>
+    <string name="musician_default">Исполнитель</string>
+    <string name="track_default">Название композиции</string>
+    <string name="cover_image_description">cover_image</string>
+    <string name="next_track_description">next_track</string>
+    <string name="play_button_description">play_button</string>
+    <string name="previous_track_description">previous_track</string>
+</resources>
