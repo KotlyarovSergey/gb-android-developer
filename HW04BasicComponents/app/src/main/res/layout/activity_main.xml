@@ -69,7 +69,7 @@
         android:text="@string/sex_text"/>
 
     <RadioGroup
-        android:id="@+id/radioSex"
+        android:id="@+id/radioGroupSex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="@id/tvSex"
@@ -79,8 +79,7 @@
             android:id="@+id/radioMan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sex_radio_man"
-            android:checked="true"/>
+            android:text="@string/sex_radio_man"/>
         <RadioButton
             android:id="@+id/radioWoman"
             android:layout_width="wrap_content"
@@ -92,7 +91,7 @@
         android:id="@+id/notificationSwitch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/radioSex"
+        app:layout_constraintTop_toBottomOf="@id/radioGroupSex"
         android:layout_marginHorizontal="@dimen/horizontal_margin"
         android:checked="true"
         android:text="@string/switch_text"/>
@@ -146,7 +145,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvScores"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:progress="25"
+
         android:layout_marginHorizontal="@dimen/horizontal_margin"/>
 
     <Button
