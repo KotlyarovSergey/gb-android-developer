@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">HW04BasicComponents</string>
+    <string name="avatar">avatar</string>
+    <string name="name_hint">Your name</string>
+    <string name="phone_hint">phone</string>
+    <string name="sex_text">Пол</string>
+    <string name="sex_radio_man">М</string>
+    <string name="sex_radio_woman">Ж</string>
+    <string name="switch_text">Получать уведомления</string>
+    <string name="check_authorisation">Об авторизации на устройстве</string>
+    <string name="check_new">О новинках и предложениях</string>
+    <string name="tv_scores_text">Баллы</string>
+    <string name="tv_scores_default">0/100</string>
+    <string name="btn_save_text">Сохранить</string>
+</resources>
