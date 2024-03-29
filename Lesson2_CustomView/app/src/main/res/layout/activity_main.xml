@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.ksv.gb.lesson2_customview.ButtonBlockView
+        android:id="@+id/block_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:background_color="#FF0000"
+        app:button_text="Текст из XML"
+        app:message_text="Сообщение из XML"/>
+
+    <Button
+        android:id="@+id/changeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="change"
+        android:textAllCaps="true"
+        app:cornerRadius="5dp"
+        android:layout_gravity="center"/>
+
+</FrameLayout>
