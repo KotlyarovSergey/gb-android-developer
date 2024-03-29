@@ -10,9 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        with(binding.customPanel){
-            bottomText.text = getString(R.string.bottom_text)
-            topText.text= getString(R.string.top_text)
-        }
+        binding.customPanel.setTopText(getString(R.string.top_text))
+        binding.customPanel.setBottomText(getString(R.string.bottom_text))
     }
 }
