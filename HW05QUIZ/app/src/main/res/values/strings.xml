@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Brain test</string>
+    <string name="welcome_picture">welcome_picture</string>
+    <string name="continue_button_text">Продолжить</string>
+</resources>
