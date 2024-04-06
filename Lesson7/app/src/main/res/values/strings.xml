@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lesson7</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello dynamic blank fragment</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+</resources>
