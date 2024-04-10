@@ -1,13 +1,14 @@
 package com.ksv.gb.lesson7
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
-import com.ksv.gb.lesson7.databinding.FragmentBlankBinding
+import com.ksv.gb.lesson7.databinding.FragmentFirstBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,8 +25,9 @@ class FirstFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private var _binding: FragmentBlankBinding? = null
+    private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,13 +42,19 @@ class FirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentBlankBinding.inflate(inflater)
+        _binding = FragmentFirstBinding.inflate(inflater)
 
         binding.button.setOnClickListener {
+            val bundle = Bundle().apply {
+                val txt = binding.editText.text.toString()
+                Log.i("ksvlog", "Send: $txt")
+                putString(ImageFragment.PARAM1, txt)
+            }
             parentFragmentManager.commit {
-                replace<ImageFragment>(R.id.fragment_container_on_activity)
+                replace<ImageFragment>(containerViewId = R.id.fragment_container_on_activity, args = bundle)
                 addToBackStack(ImageFragment::class.java.simpleName)
             }
+
         }
 
         return binding.root

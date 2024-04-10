@@ -1,6 +1,7 @@
 package com.ksv.gb.lesson7
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +28,7 @@ class ImageFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
+            param1 = it.getString(PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
     }
@@ -43,6 +44,18 @@ class ImageFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if(!param1.isNullOrBlank())
+            binding.parameters.text = param1
+        Log.i("ksvlog", "Input: $param1")
     }
 
     companion object {
@@ -63,5 +76,7 @@ class ImageFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+
+        const val PARAM1: String = "mhfggfmnhgyfjyk6ru665ey6"
     }
 }
