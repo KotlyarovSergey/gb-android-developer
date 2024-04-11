@@ -17,7 +17,6 @@ class QuestionView @JvmOverloads constructor(
         binding = QuestionViewBinding.bind(inflatedView)
     }
 
-
     fun isRightAnswer(): Boolean{
         if(rightAnswer == -1) return false
         when(rightAnswer){
@@ -36,22 +35,6 @@ class QuestionView @JvmOverloads constructor(
             answer3.text = data.answer3
         }
         rightAnswer = data.right
-    }
-    fun setRightAnswer(number: Int){
-        rightAnswer = number
-    }
-    fun setQuestionText(text: String){
-        binding.tvQuestion.text = text
-    }
-
-    fun setAnswer1Text(text: String){
-        binding.answer1.text = text
-    }
-    fun setAnswer2Text(text: String){
-        binding.answer2.text = text
-    }
-    fun setAnswer3Text(text: String){
-        binding.answer3.text = text
     }
 
 }
