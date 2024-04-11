@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.QuizFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:orientation="vertical">
+
+        <com.ksv.hw07_quiz.ui.main.QuestionView
+            android:id="@+id/questionView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <com.ksv.hw07_quiz.ui.main.QuestionView
+            android:id="@+id/questionView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <com.ksv.hw07_quiz.ui.main.QuestionView
+            android:id="@+id/questionView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+        <LinearLayout
+            android:layout_marginVertical="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+
+            <Button
+                android:id="@+id/backToGreeting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_weight="50"
+                android:text="@string/back_to_greeting" />
+
+
+            <Button
+                android:id="@+id/sendAnswers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_weight="50"
+                android:text="@string/send_answers" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

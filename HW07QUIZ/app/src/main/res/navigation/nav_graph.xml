@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress NavigationFile -->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/greetingFragment">
+
+    <fragment
+        android:id="@+id/greetingFragment"
+        android:name="com.ksv.hw07_quiz.ui.main.GreetingFragment"
+        android:label="fragment_greeting"
+        tools:layout="@layout/fragment_greeting" >
+        <action
+            android:id="@+id/action_greetingFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.ksv.hw07_quiz.ui.main.QuizFragment"
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz" >
+        <action
+            android:id="@+id/action_quizFragment_to_resultFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/quizFragment"
+            app:destination="@id/resultFragment"/>
+
+
+        <action
+            android:id="@+id/action_quizFragment_to_greetingFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/greetingFragment"
+            app:destination="@id/greetingFragment" />
+
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.ksv.hw07_quiz.ui.main.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" >
+        <action
+            android:id="@+id/action_resultFragment_to_greetingFragment"
+            app:destination="@id/greetingFragment" />
+        <action
+            android:id="@+id/action_resultFragment_to_quizFragment"
+            app:popUpTo="@id/resultFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/quizFragment" />
+        <argument
+            android:name="totalScores"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="rightScores"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+</navigation>

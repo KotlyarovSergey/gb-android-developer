@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Brain test</string>
+    <string name="welcome_picture">welcome_picture</string>
+    <string name="continue_button_text">Начать</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="send_answers">Отправить</string>
+    <string name="back_to_greeting">Назад</string>
+    <string name="result_title">Ваш результат:</string>
+    <string name="result_balls_template">из</string>
+    <string name="new_quiz">Начать заново</string>
+</resources>
