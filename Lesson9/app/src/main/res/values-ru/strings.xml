@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Урок9</string>
+    <string name="open_date_picker_title">Открыть выбор даты</string>
+    <string name="open_time_picker_title">Открыть выбор времени</string>
+
+    <string-array name="planets">
+        <item>Меркурий</item>
+        <item>Верера</item>
+        <item>Земля</item>
+        <item>Марс</item>
+        <item>Юпитер</item>
+        <item>Сатурн</item>
+        <item>Уран</item>
+        <item>Нептун</item>
+        <item>Плутон</item>
+    </string-array>
+
+    <integer-array name="olympic_years">
+        <item>2022</item>
+        <item>2018</item>
+        <item>2014</item>
+        <item>2010</item>
+        <item>2006</item>
+        <item>2002</item>
+        <item>1998</item>
+        <item>1994</item>
+        <item>1992</item>
+        <item>1988</item>
+        <item>1984</item>
+        <item>1980</item>
+    </integer-array>
+
+    <plurals name="count_new_messages">
+        <item quantity="zero">zero: %1$d новых сообщений</item>
+        <item quantity="one">one: %1$d новое сообщее</item>
+        <item quantity="two">two: %1$d новых сообщений</item>
+        <item quantity="few">few: %1$d новых сообщений</item>
+        <item quantity="many">many: %1$d новых сообщений</item>
+        <item quantity="other">other: %1$d новых сообщений</item>
+    </plurals>
+
+    <plurals name="money">
+        <item quantity="zero">zero: %1$d рублей</item>
+        <item quantity="one">one: %1$d рубль</item>
+        <item quantity="two">two: %1$d рубля</item>
+        <item quantity="few">few: %1$d рубля</item>
+        <item quantity="many">many: %1$d рублей</item>
+        <item quantity="other">other: %1$d рублей</item>
+    </plurals>
+</resources>
