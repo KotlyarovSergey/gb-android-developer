@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TitleStyle" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">42sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">sans-serif-black</item>
+    </style>
+    <style name="StartButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerSize">8dp</item>
+        <item name="strokeWidth">3dp</item>
+    </style>
+
+</resources>

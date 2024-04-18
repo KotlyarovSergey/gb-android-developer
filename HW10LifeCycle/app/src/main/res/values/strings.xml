@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HW10LifeCycle</string>
+    <string name="tv_title_text">Countdown Timer</string>
+    <string name="btn_start_text">start</string>
+</resources>
