@@ -2,4 +2,6 @@
     <string name="app_name">HW10LifeCycle</string>
     <string name="tv_title_text">Countdown Timer</string>
     <string name="btn_start_text">start</string>
+    <string name="btn_stop_text">stop</string>
+    <string name="progress_text_default">0</string>
 </resources>

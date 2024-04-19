@@ -6,8 +6,9 @@
     </style>
 
     <style name="Theme.HW10LifeCycle" parent="Base.Theme.HW10LifeCycle">
-        <item name="colorPrimary">#D50E0E</item>
-        <item name="colorOnPrimary">#03A9F4</item>
-        <item name="colorPrimaryVariant">#FFEB3B</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorAccent">@color/accent</item>
     </style>
 </resources>
