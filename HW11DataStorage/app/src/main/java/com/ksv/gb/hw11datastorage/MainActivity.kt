@@ -2,10 +2,6 @@ package com.ksv.gb.hw11datastorage
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextWatcher
-import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doAfterTextChanged
-import androidx.core.widget.doOnTextChanged
 import com.ksv.gb.hw11datastorage.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
