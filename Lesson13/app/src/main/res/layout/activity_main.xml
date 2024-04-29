@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="8dp"
+                android:text="@{pet.name}"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/text_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="8dp"
+                android:text="@{String.valueOf(pet.age)}"
+                android:textSize="22sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/text_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="8dp"
+                    android:text="@{String.valueOf(pet.weight)}"
+                    android:visibility="@{pet.visible ? View.VISIBLE : View.GONE}"
+                    android:textSize="22sp" />
+
+                <Button
+                    android:id="@+id/weight_hide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="hide/show" />
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/text_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="8dp"
+                android:text="@{pets[pets.size-1].name}"
+                android:textSize="22sp" />
+            <TextView
+                android:id="@+id/text_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="8dp"
+                android:text="@{pets_map[`first`].name}"
+                android:textSize="22sp" />
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onTextChanged="@{(text, before, on, after) -> Helper.onTextChanged(editText, text.toString())}" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onCheckedChanged="@{(v, checked) -> Helper.onChecked(v, checked)}"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cleck"
+                android:onClickListener="@{() -> Helper.onClick(context)}"
+                />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.ksv.lesson13.Pet"/>
+        <import type="com.ksv.lesson13.Helper"/>
+        <variable
+            name="pet"
+            type="com.ksv.lesson13.Pet" />
+        <variable
+            name="pets"
+            type="java.util.List&lt;Pet>" />
+        <variable
+            name="pets_map"
+            type="java.util.Map&lt;String, Pet>" />
+
+    </data>
+</layout>
