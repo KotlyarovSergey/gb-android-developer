@@ -2,6 +2,7 @@ package com.ksv.gb.hw13databinding
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
@@ -10,6 +11,8 @@ import com.ksv.gb.hw13databinding.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
+
     private val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,4 +110,10 @@ class MainActivity : AppCompatActivity() {
         private const val SEARCH_EDIT_ENABLED = "search_edit_enable"
         private const val SEARCH_RESULT= "search_result"
     }
+
+
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_main)
+//    }
 }
