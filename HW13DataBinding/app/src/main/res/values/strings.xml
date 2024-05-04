@@ -3,4 +3,5 @@
     <string name="tv_default">Здесь будет отображаться результат запроса</string>
     <string name="tv_result_prefix">По запросу \"</string>
     <string name="tv_result_postfix">\" ничего не найдено</string>
+    <string name="generic_text">По запросу \" %s \" ничего не найдено</string>
 </resources>

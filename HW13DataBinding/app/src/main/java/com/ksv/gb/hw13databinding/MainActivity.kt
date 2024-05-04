@@ -11,13 +11,26 @@ import com.ksv.gb.hw13databinding.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
-
     private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
+
+        //      TODO        УДАЛИТЬ
+        binding.stateChange.setOnClickListener {
+            viewModel.stateChange()
+            binding.stateTextView.text = viewModel.state.value.toString()
+            binding.searchingText = binding.searchEdit.text.toString()
+            binding.textView.text = viewModel.resultText
+            binding.invalidateAll()
+        }
+
+
 
         restoreSavedState(savedInstanceState)
         setViewsListeners()
@@ -31,8 +44,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun restoreSavedState(savedInstanceState: Bundle?){
-        binding.searchButton.isEnabled =
-            savedInstanceState?.getBoolean(SEARCH_BUTTON_ENABLED, false) ?: false
+//        binding.searchButton.isEnabled =
+//            savedInstanceState?.getBoolean(SEARCH_BUTTON_ENABLED, false) ?: false
         binding.searchEdit.isEnabled =
             savedInstanceState?.getBoolean(SEARCH_EDIT_ENABLED, true) ?: true
         val defaultResult = getString(R.string.tv_default)
@@ -45,19 +58,19 @@ class MainActivity : AppCompatActivity() {
             viewModel.searchEditChange(it.toString())
         }
 
-        binding.searchButton.setOnClickListener {
-            val searchedText = binding.searchEdit.text.toString()
-            viewModel.onSearchClick(searchedText)
-        }
+//        binding.searchButton.setOnClickListener {
+//            val searchedText = binding.searchEdit.text.toString()
+//            viewModel.onSearchClick(searchedText)
+//        }
     }
 
     private fun setViewModelListeners(){
-        lifecycleScope.launchWhenStarted {
-            viewModel.state
-                .collect { state ->
-                    setViewsWithSearchState(state)
-                }
-        }
+//        lifecycleScope.launchWhenStarted {
+//            viewModel.state
+//                .collect { state ->
+//                    setViewsWithSearchState(state)
+//                }
+//        }
         lifecycleScope.launchWhenStarted {
             viewModel.result
                 .collect {
