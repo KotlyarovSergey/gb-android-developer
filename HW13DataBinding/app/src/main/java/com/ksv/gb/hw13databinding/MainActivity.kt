@@ -23,18 +23,19 @@ class MainActivity : AppCompatActivity() {
 
         //      TODO        УДАЛИТЬ
         binding.stateChange.setOnClickListener {
-            viewModel.stateChange()
-            binding.stateTextView.text = viewModel.state.value.toString()
-            binding.searchingText = binding.searchEdit.text.toString()
-            binding.textView.text = viewModel.resultText
-            binding.invalidateAll()
+            viewModel.searchJobCancel(this)
+//            viewModel.stateChange()
+//            binding.stateTextView.text = viewModel.state.value.toString()
+//            binding.searchingText = binding.searchEdit.text.toString()
+////            binding.textView.text = viewModel.resultText
+//            binding.invalidateAll()
         }
 
 
 
         restoreSavedState(savedInstanceState)
-        setViewsListeners()
-        setViewModelListeners()
+//        setViewsListeners()
+//        setViewModelListeners()
     }
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putBoolean(SEARCH_BUTTON_ENABLED, binding.searchButton.isEnabled)
@@ -54,14 +55,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setViewsListeners(){
-        binding.searchEdit.addTextChangedListener {
-            viewModel.searchEditChange(it.toString())
-        }
+//        binding.searchEdit.addTextChangedListener {
+//            viewModel.searchEditChange()
+////            viewModel.searchEditChange(it.toString())
+//        }
 
 //        binding.searchButton.setOnClickListener {
 //            val searchedText = binding.searchEdit.text.toString()
 //            viewModel.onSearchClick(searchedText)
 //        }
+
     }
 
     private fun setViewModelListeners(){
@@ -71,12 +74,14 @@ class MainActivity : AppCompatActivity() {
 //                    setViewsWithSearchState(state)
 //                }
 //        }
-        lifecycleScope.launchWhenStarted {
-            viewModel.result
-                .collect {
-                    showResult(it)
-                }
-        }
+
+
+//        lifecycleScope.launchWhenStarted {
+//            viewModel.result
+//                .collect {
+//                    showResult(it)
+//                }
+//        }
     }
 
     private fun showResult(result: String?){
@@ -101,14 +106,14 @@ class MainActivity : AppCompatActivity() {
                     searchButton.isEnabled = false
                 }
             }
-            State.Normal -> {
+            is State.Normal -> {
                 with(binding) {
                     searchEdit.isEnabled = true
                     searchButton.isEnabled = true
                     progress.visibility = View.GONE
                 }
             }
-            State.Insufficient -> {
+            is State.Insufficient -> {
                 with(binding) {
                     searchEdit.isEnabled = true
                     searchButton.isEnabled = false

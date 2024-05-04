@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#D4D4E4"
@@ -39,6 +39,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp"/>
+        <TextView
+            android:id="@+id/stateTextResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.state.resultText}"
+            app:layout_constraintTop_toBottomOf="@id/stateAuto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"/>
 
         <EditText
             android:id="@+id/searchEdit"
@@ -48,13 +58,15 @@
             android:layout_marginEnd="16dp"
             android:hint="edit search"
             android:inputType="text"
+            android:onTextChanged="@{(text, before, on, after) -> viewModel.searchEditChange()}"
             android:paddingHorizontal="8dp"
+            android:text="@={viewModel.searchedText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@id/searchButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.4" />
+            app:layout_constraintVertical_bias="0.284" />
 
         <ImageButton
             android:visibility="gone"
@@ -86,19 +98,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="@string/tv_default"
+            android:text="@{viewModel.state.resultText}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/progress" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/textView"
-            android:layout_marginTop="16dp"
-            android:text="@{viewModel.resultText}"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <data>
