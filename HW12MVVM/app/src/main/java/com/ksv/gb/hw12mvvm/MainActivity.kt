@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.ksv.gb.hw12mvvm.databinding.ActivityMainBinding
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -49,17 +52,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setViewModelListeners(){
-        lifecycleScope.launchWhenStarted {
-            viewModel.state
-                .collect { state ->
-                    setViewsWithSearchState(state)
-                }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.state
+                    .collect { state ->
+                        setViewsWithSearchState(state)
+                    }
+            }
         }
-        lifecycleScope.launchWhenStarted {
-            viewModel.result
-                .collect {
-                    showResult(it)
-                }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.result
+                    .collect {
+                        showResult(it)
+                    }
+            }
         }
     }
 
