@@ -21,7 +21,6 @@ data class Result(
     @Json(name="location") val location: Location,
     @Json(name="email") val email: String,
     @Json(name="picture") val pictureUrl: PictureUrl
-
 )
 @JsonClass(generateAdapter = true)
 data class Name(
@@ -47,12 +46,3 @@ data class Street(
     @Json(name="number") val number: String,
     @Json(name="name") val name: String
 )
-
-
-/*
-    "name": {
-                "title": "Mr",
-                "first": "Christopher",
-                "last": "Clark"
-            },
-*/
