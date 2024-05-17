@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">HW14Retrofit</string>
+    <string name="name_default">Mr Christopher Clark</string>
+    <string name="gender_default">male</string>
+    <string name="email_default">christopher.clark@example.com</string>
+    <string name="location_caption">Location:</string>
+    <string name="refresh">Перезагрузить</string>
+</resources>
