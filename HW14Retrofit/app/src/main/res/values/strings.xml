@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">HW14Retrofit</string>
-    <string name="name_default">Mr Christopher Clark</string>
-    <string name="gender_default">male</string>
-    <string name="email_default">christopher.clark@example.com</string>
+    <string name="name_default">Name</string>
+    <string name="gender_default">gender</string>
+    <string name="email_default">useremail@example.com</string>
     <string name="location_caption">Location:</string>
-    <string name="refresh">Перезагрузить</string>
+    <string name="location_default">street&#xA;city&#xA;state&#xA;country</string>
+    <string name="refresh">Обновить</string>
+    <string name="get_data_error">Ошибка получения данных. Перезагрузите</string>
+
 </resources>

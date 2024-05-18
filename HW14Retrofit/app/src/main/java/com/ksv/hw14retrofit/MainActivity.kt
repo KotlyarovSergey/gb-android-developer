@@ -13,9 +13,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportFragmentManager.commit {
-            replace<UserCardFragment>(binding.frameContainer.id)
-            addToBackStack(UserCardFragment::javaClass.name)
-        }
+//        supportFragmentManager.commit {
+//            replace<UserCardFragment>(binding.frameContainer.id)
+//            //addToBackStack(UserCardFragment::javaClass.name)
+//        }
     }
 }

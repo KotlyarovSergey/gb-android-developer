@@ -11,6 +11,7 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/frameContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:name="com.ksv.hw14retrofit.UserCardFragment"/>
     </FrameLayout>
 </layout>

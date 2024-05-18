@@ -14,6 +14,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="16dp"
+            android:src="@mipmap/ic_launcher_round"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -56,6 +57,7 @@
             android:text="@string/location_caption"
             android:layout_marginTop="16dp"
             android:textSize="22sp"
+            android:visibility="@{viewModel.state == State.Error.INSTANCE ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="@id/tvEmail"
             app:layout_constraintTop_toBottomOf="@id/tvEmail"/>
 
@@ -64,20 +66,56 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
+            android:text="@string/location_default"
             android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
             android:lineSpacingMultiplier="1.2"
             app:layout_constraintStart_toStartOf="@id/tvLocationCaption"
             app:layout_constraintTop_toBottomOf="@id/tvLocationCaption"/>
 
+
+        <TextView
+            android:id="@+id/tvErrorMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="@string/get_data_error"
+            android:visibility="@{viewModel.state == State.Error.INSTANCE ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.65" />
+
+
         <Button
             android:id="@+id/refreshButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/refresh"
+            android:enabled="@{viewModel.state != State.Loading.INSTANCE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.state == State.Loading.INSTANCE ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.65" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <import type="com.ksv.hw14retrofit.State"/>
+        <import type="com.ksv.hw14retrofit.UserCardViewModel"/>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="UserCardViewModel" />
+    </data>
 </layout>
