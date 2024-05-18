@@ -1,7 +1,6 @@
 package com.ksv.hw14retrofit
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,29 +30,23 @@ class UserCardFragment : Fragment() {
         _binding = FragmentUserCardBinding.inflate(layoutInflater)
         return binding.root
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-//        viewModel.refreshData()
-
         binding.refreshButton.setOnClickListener {
             viewModel.getDataFromServer()
         }
 
         listenToModel()
-
-        val person = viewModel.person
-        if(person == null)
-            Log.d("ksvlog", "")
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 
 
     private fun listenToModel(){
@@ -99,11 +92,12 @@ class UserCardFragment : Fragment() {
     }
 
     private fun clearViews(){
+        val context = requireContext()
         binding.photoImage.load(requireActivity().getDrawable(R.mipmap.ic_launcher))
-        binding.tvGender.text = ""
-        binding.tvName.text = ""
-        binding.tvEmail.text = ""
-        binding.tvLocation.text = ""
+        binding.tvGender.text = context.getString(R.string.gender_default)
+        binding.tvName.text = context.getString(R.string.name_default)
+        binding.tvEmail.text = context.getString(R.string.email_default)
+        binding.tvLocation.text = context.getString(R.string.location_default)
     }
 
 }

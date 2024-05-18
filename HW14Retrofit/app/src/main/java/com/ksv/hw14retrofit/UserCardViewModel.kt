@@ -3,7 +3,6 @@ package com.ksv.hw14retrofit
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -17,16 +16,15 @@ class UserCardViewModel : ViewModel() {
 
     private var firstLaunch = true
 
-    init {
-        Log.d("ksvlog", "ViewModel: init")
-    }
     fun getDataFromServer() {
         Log.d("ksvlog", "ViewModel: refreshData")
         viewModelScope.launch {
             _state.value = State.Loading
             val response = RetrofitInstance.getPersonApiResponse.getPersonData()
-            delay(5000L)
-//            val rnd = (0..20).random()
+//            delay(1000L)  // имитация "задумчивости" сервера
+
+            // имитация ошибки получения данных с сервера
+//            val rnd = (0..10).random()
 //            if(rnd == 0){
 //                _state.value = State.Error
 //            } else {
@@ -43,13 +41,9 @@ class UserCardViewModel : ViewModel() {
     }
 
     fun firstLaunch() {
-        if(firstLaunch)
-        {
+        if (firstLaunch) {
             getDataFromServer()
             firstLaunch = false
-        Log.d("ksvlog", "ViewModel: firstLaunch")
         }
-
-//        getDataFromServer()
     }
 }

@@ -1,6 +1,5 @@
 package com.ksv.hw14retrofit
 
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
