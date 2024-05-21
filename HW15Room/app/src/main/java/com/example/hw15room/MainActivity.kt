@@ -30,22 +30,37 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.allWords
+//                viewModel.mostCountedWords
                     .collect { words ->
                         binding.resultTV.text = words.joinToString("\n")
                     }
             }
         }
 
+//        lifecycleScope.launch {
+//            repeatOnLifecycle(Lifecycle.State.STARTED){
+//                viewModel.selected
+//                    .collect {words ->
+////                        binding.clearButton.text = words.count().toString()
+//                        words.firstOrNull()?.let { word ->
+//                            binding.clearButton.text = word.word
+//                        }
+//                    }
+//            }
+//        }
+
         binding.addButton.setOnClickListener{
             val txt = binding.inputEdit.text.toString()
             if(txt.isNotBlank()){
-                val word = Word(txt, 1)
-                viewModel.addWord(word)
+                viewModel.addWord(txt)
             }
         }
 
         binding.clearButton.setOnClickListener {
             viewModel.deleteLast()
+            //viewModel.findWord(binding.inputEdit.text.toString())
         }
+
+
     }
 }
