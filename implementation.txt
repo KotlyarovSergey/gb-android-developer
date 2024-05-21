@@ -1,0 +1,40 @@
+implementation("androidx.activity:activity-ktx:1.9.0")
+implementation("androidx.fragment:fragment-ktx:1.7.1")
+
+implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.0")
+implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0")
+
+
+// Retrofit
+implementation("com.squareup.retrofit2:retrofit:2.9.0")
+
+
+// Moshi
+implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+implementation("com.squareup.moshi:moshi:1.15.1")
+implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
+ksp("com.squareup.moshi:moshi-kotlin-codegen:1.15.1")
+		// добавить в buld.gradle уровня проект
+		id("com.google.devtools.ksp") version "1.9.10-1.0.13" apply false
+		// добавить в plugins
+		id("com.google.devtools.ksp")
+	
+	
+// Gson
+implementation("com.google.code.gson:gson:2.10")
+
+
+// Coil (загружать в ImageView картинки и сети)
+implementation("io.coil-kt:coil:0.13.0")
+
+
+// Room
+implementation("androidx.room:room-runtime:2.6.1")
+implementation("androidx.room:room-ktx:2.6.1")
+ksp("androidx.room:room-compiler:2.6.1")
+		// добавить в buld.gradle уровня проект
+		id("com.google.devtools.ksp") version "1.9.10-1.0.13" apply false
+		// добавить в plugins
+		id("com.google.devtools.ksp")
+		
+implementation("androidx.room:room-rxjava2:2.6.1")
