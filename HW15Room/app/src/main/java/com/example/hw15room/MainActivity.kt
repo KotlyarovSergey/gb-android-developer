@@ -2,16 +2,10 @@ package com.example.hw15room
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.example.hw15room.databinding.ActivityMainBinding
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -27,58 +21,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-//                viewModel.allWords
-                viewModel.mostCountedWords
-                    .collect { words ->
-                        //binding.resultTV.text = words.joinToString("\n")
-                        binding.resultTV.text = wordsToString(words)
-                    }
-            }
-        }
-
-        binding.addButton.setOnClickListener{
-            val inputText = binding.inputEdit.text.toString()
-            if (inputText.matches(INPUT_REGEX)) {
-                val txt = binding.inputEdit.text.toString()
-                if (txt.isNotBlank()) {
-                    viewModel.addWord(txt)
-                    binding.inputEdit.text.clear()
-                }
-            }
-            else {
-                val toast = Toast.makeText(
-                    this,
-                    getText(R.string.input_error_msg),
-                    Toast.LENGTH_SHORT
-                )
-                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
-                toast.show()
-                //Snackbar.make(it, R.string.input_error_msg,Snackbar.LENGTH_SHORT).show()
-            }
-        }
-
-        binding.clearButton.setOnClickListener {
-            viewModel.clearDictionary()
-            binding.inputEdit.text.clear()
-        }
-    }
-
-    private fun wordsToString(dictionaryItems: List<DictionaryItem>):String{
-        val stringBuilder = StringBuilder()
-        for(word in dictionaryItems){
-            if(word.count > 1)
-                stringBuilder.append("${word.word} (${word.count})\n")
-            else
-                stringBuilder.append("${word.word}\n")
-        }
-        return stringBuilder.toString()
-    }
-
-    companion object{
-//        private val INPUT_REGEX = Regex("""[A-Za-z-]""")
-        private val INPUT_REGEX = Regex("""[A-Z]?[a-z]+-?[a-z]+""")
     }
 }

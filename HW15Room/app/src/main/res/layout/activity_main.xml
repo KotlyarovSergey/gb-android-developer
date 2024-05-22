@@ -1,54 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingHorizontal="16dp"
-    android:background="#A0B598"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <EditText
-        android:id="@+id/inputEdit"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp"
+        android:layout_height="match_parent"
+        android:background="#A0B598"
         android:paddingHorizontal="16dp"
-        android:textSize="22sp"
-        android:hint="@string/input_hint"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/addButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAllCaps="true"
-        android:text="@string/add_button_title"
-        app:layout_constraintTop_toBottomOf="@id/inputEdit"/>
+        <EditText
+            android:id="@+id/inputEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/input_hint"
+            android:paddingHorizontal="16dp"
+            android:textColor="@{viewModel.state == State.Error.INSTANCE ? @color/red : @color/black}"
+            android:textSize="22sp"
+            android:onTextChanged="@{(text, before, on, after) -> viewModel.inputEditTextChange()}"
+            android:text="@={viewModel.inputText}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/resultTV"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:padding="16dp"
-        android:textSize="22sp"
-        android:text="@string/result_tv_default"
-        app:layout_constraintBottom_toTopOf="@+id/clearButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addButton" />
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.addWordClick()}"
+            android:text="@string/add_button_title"
+            android:enabled="@{viewModel.state == State.Normal.INSTANCE}"
+            android:textAllCaps="true"
+            app:layout_constraintTop_toBottomOf="@id/inputEdit" />
 
-    <Button
-        android:id="@+id/clearButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAllCaps="true"
-        android:text="@string/clear_button_title"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        <TextView
+            android:id="@+id/resultTV"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="16dp"
+            android:text="@{viewModel.wordsToString(viewModel.mostCountedWords)}"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toTopOf="@+id/clearButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addButton" />
 
+        <Button
+            android:id="@+id/clearButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/clear_button_title"
+            android:onClick="@{() -> viewModel.clearDictionary()}"
+            android:textAllCaps="true"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <import type="com.example.hw15room.State"/>
+        <import type="com.example.hw15room.MainViewModel"/>
+        <import type="com.example.hw15room.Utils"/>
+        <variable
+            name="viewModel"
+            type="MainViewModel" />
+    </data>
+</layout>
