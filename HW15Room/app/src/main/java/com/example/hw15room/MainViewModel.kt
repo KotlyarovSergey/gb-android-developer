@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val dictionaryDao: DictionaryDao) : ViewModel() {
-    private val _state = MutableStateFlow<State>(State.Input)
+    private val _state = MutableStateFlow<State>(State.TooShort)
     val state = _state.asStateFlow()
     val inputText = MutableStateFlow("")
     val mostCountedWords: StateFlow<List<DictionaryItem>> = this.dictionaryDao.getMostCounted(WORD_ITEMS_LIMIT)
@@ -37,7 +37,7 @@ class MainViewModel(private val dictionaryDao: DictionaryDao) : ViewModel() {
                 dictionaryDao.insert(DictionaryItem(word))
             }
         }
-        _state.value = State.Input
+        _state.value = State.TooShort
         inputText.value = ""
     }
 
@@ -48,13 +48,14 @@ class MainViewModel(private val dictionaryDao: DictionaryDao) : ViewModel() {
     fun inputEditTextChange() {
         inputText.debounce(DEBOUNCE_TIMEOUT_MILLIS).onEach {
             Log.d("ksvlog", "txt: $it")
-            _state.value = State.Input
-            if (it.matches(INPUT_REGEX)) {
+            if(it.length < MIN_LENGTH){
+                _state.value = State.TooShort
+//                _state.value = State.Error(null)
+            }
+            else if (it.matches(INPUT_REGEX)) {
                 _state.value = State.Normal
-                Log.d("ksvlog", "st: ${state.value}")
             } else {
-                _state.value = State.Error
-                Log.d("ksvlog", "st: ${state.value}")
+                _state.value = State.Error(INPUT_ERROR_MSG)
             }
         }.launchIn(viewModelScope)
     }
@@ -74,5 +75,7 @@ class MainViewModel(private val dictionaryDao: DictionaryDao) : ViewModel() {
         private const val WORD_ITEMS_LIMIT = 5
         private const val DEBOUNCE_TIMEOUT_MILLIS = 300L
         private val INPUT_REGEX = Regex("""[A-Z]?[a-z]+-?[a-z]+""")
+        private const val INPUT_ERROR_MSG = "Недопустимый набор символов"
+        private const val MIN_LENGTH = 2
     }
 }

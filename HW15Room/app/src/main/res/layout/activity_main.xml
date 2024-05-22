@@ -10,30 +10,36 @@
         android:paddingHorizontal="16dp"
         tools:context=".MainActivity">
 
-        <EditText
-            android:id="@+id/inputEdit"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:hint="@string/input_hint"
-            android:paddingHorizontal="16dp"
-            android:textColor="@{viewModel.state == State.Error.INSTANCE ? @color/red : @color/black}"
-            android:textSize="22sp"
-            android:onTextChanged="@{(text, before, on, after) -> viewModel.inputEditTextChange()}"
-            android:text="@={viewModel.inputText}"
+            app:endIconMode="clear_text"
+            app:error="@{viewModel.state.errorText}"
+            app:errorEnabled="true"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onTextChanged="@{(text, before, on, after) -> viewModel.inputEditTextChange()}"
+                android:text="@={viewModel.inputText}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/addButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="@{viewModel.state == State.Normal.INSTANCE}"
             android:onClick="@{() -> viewModel.addWordClick()}"
             android:text="@string/add_button_title"
-            android:enabled="@{viewModel.state == State.Normal.INSTANCE}"
             android:textAllCaps="true"
-            app:layout_constraintTop_toBottomOf="@id/inputEdit" />
+            app:layout_constraintTop_toBottomOf="@id/inputLayout" />
 
         <TextView
             android:id="@+id/resultTV"
@@ -51,16 +57,16 @@
             android:id="@+id/clearButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/clear_button_title"
             android:onClick="@{() -> viewModel.clearDictionary()}"
+            android:text="@string/clear_button_title"
             android:textAllCaps="true"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <data>
-        <import type="com.example.hw15room.State"/>
-        <import type="com.example.hw15room.MainViewModel"/>
-        <import type="com.example.hw15room.Utils"/>
+        <import type="com.example.hw15room.State" />
+        <import type="com.example.hw15room.MainViewModel" />
         <variable
             name="viewModel"
             type="MainViewModel" />
