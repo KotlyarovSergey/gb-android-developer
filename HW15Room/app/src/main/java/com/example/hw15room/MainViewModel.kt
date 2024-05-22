@@ -1,15 +1,13 @@
 package com.example.hw15room
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val wordDao: WordDao) : ViewModel() {
+class MainViewModel(private val dictionaryDao: DictionaryDao) : ViewModel() {
 //    val allWords: StateFlow<List<Word>> = this.wordDao.getAll()
 //        .stateIn(
 //            scope = viewModelScope,
@@ -18,79 +16,32 @@ class MainViewModel(private val wordDao: WordDao) : ViewModel() {
 //        )
 
 
-    val mostCountedWords: StateFlow<List<Word>> = this.wordDao.getMostCounted(WORDS_LIMIT)
+    val mostCountedWords: StateFlow<List<DictionaryItem>> = this.dictionaryDao.getMostCounted(WORD_ITEMS_LIMIT)
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000L),
             initialValue = emptyList()
         )
 
-    //val selected = MutableStateFlow<List<Word>>(emptyList())
-
-    fun addWord(text: String) {
-        // это работает
-//        for (word in allWords.value){
-//            if(text == word.word){
-//                val incCount = word.count + 1
-//                viewModelScope.launch {
-//                    wordDao.updateCount(word.word, incCount)
-//                }
-//                return
-//            }
-//        }
-//        viewModelScope.launch {
-//            wordDao.insert(Word(text))
-//        }
-
-
+    fun addWord(word: String) {
         viewModelScope.launch {
-            val words = wordDao.select(text)
-            if (words.isNotEmpty()) {
-                wordDao.updateCount(
-                    word = words.first().word,
-                    count = words.first().count + 1
+            val selectedItems = dictionaryDao.select(word)
+            if (selectedItems.isNotEmpty()) {
+                dictionaryDao.updateCount(
+                    word = selectedItems.first().word,
+                    count = selectedItems.first().count + 1
                 )
             } else {
-                wordDao.insert(Word(text))
+                dictionaryDao.insert(DictionaryItem(word))
             }
         }
-
     }
 
-    fun clear() {
-        viewModelScope.launch { wordDao.clear() }
+    fun clearDictionary() {
+        viewModelScope.launch { dictionaryDao.clear() }
     }
-
-
-//    fun findWord(word: String){
-//        viewModelScope.launch {
-//            selected.value = wordDao.select(word)
-//            Log.d("ksvlog", "${selected.value}")
-//        }
-//    }
-
-//    fun update(word: Word) {
-//        viewModelScope.launch {
-//            wordDao.updateCount(word.word, word.count)
-//        }
-//    }
-
-//    fun deleteLast(){
-//        viewModelScope.launch {
-//            allWords.value.lastOrNull()?.let{
-//                wordDao.delete(it)
-//            }
-//        }
-//    }
-
-//    fun deleteByWord(word: String){
-//        viewModelScope.launch{
-////            wordDao.delete(Word(word))
-//        }
-//    }
-
 
     companion object {
-        private const val WORDS_LIMIT = 5
+        private const val WORD_ITEMS_LIMIT = 5
     }
 }

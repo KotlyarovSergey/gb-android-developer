@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "words")
-data class Word(
+data class DictionaryItem(
     @PrimaryKey
     @ColumnInfo(name = "word")
     val word: String,
