@@ -7,8 +7,9 @@ import com.ksv.hw16architect.entity.UsefulActivity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(
+class MainViewModel @Inject constructor(
     private val getUsefulActivityUseCase: GetUsefulActivityUseCase
 ): ViewModel() {
 

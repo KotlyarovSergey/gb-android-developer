@@ -2,8 +2,9 @@ package com.ksv.hw16architect.data
 
 import android.util.Log
 import com.ksv.hw16architect.entity.UsefulActivity
+import javax.inject.Inject
 
-class UsefulActivitiesRepository {
+class UsefulActivitiesRepository @Inject constructor(){
     private var usefulActivity = UsefulActivityDto(
         activity = "Go on a long drive with no music",
         availability = 0.2f,
@@ -27,6 +28,7 @@ class UsefulActivitiesRepository {
             Log.d("ksvlog", "${ex.message}")
         }
 
+        // !!! Заглушка. т.к. сайт https://www.boredapi.com не работает
         return usefulActivity
     }
 }
