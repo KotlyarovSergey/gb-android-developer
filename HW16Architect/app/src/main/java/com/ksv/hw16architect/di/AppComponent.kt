@@ -6,7 +6,8 @@ import dagger.Component
 @Component(
     modules = [
         DataModule::class,
-        DomainModule::class
+        DomainModule::class,
+        PresentationModule::class
     ]
 )
 
