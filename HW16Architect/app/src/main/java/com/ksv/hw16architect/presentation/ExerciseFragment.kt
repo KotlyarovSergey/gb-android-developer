@@ -14,10 +14,9 @@ import com.ksv.hw16architect.domain.GetUsefulActivityUseCase
 class ExerciseFragment : Fragment() {
     private var _binding: FragmentExerciseBinding? = null
     private val binding get() = _binding!!
-//    private val viewModel: MainViewModel by viewModels()
-//    {
-//        DaggerAppComponent.create().mainViewModel()
-//    }
+    private val viewModel: MainViewModel by viewModels {
+        DaggerAppComponent.create().mainViewModelFactory()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,8 +29,8 @@ class ExerciseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewModel = DaggerAppComponent.create().mainViewModel()
-//        binding.viewModel = viewModel
+//        binding.viewModel = DaggerAppComponent.create().mainViewModel()
+        binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
     }
     override fun onDestroy() {

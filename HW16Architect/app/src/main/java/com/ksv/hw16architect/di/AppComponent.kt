@@ -1,6 +1,7 @@
 package com.ksv.hw16architect.di
 
 import com.ksv.hw16architect.presentation.MainViewModel
+import com.ksv.hw16architect.presentation.MainViewModelFactory
 import dagger.Component
 
 @Component(
@@ -12,5 +13,5 @@ import dagger.Component
 )
 
 interface AppComponent {
-    fun mainViewModel(): MainViewModel
+    fun mainViewModelFactory(): MainViewModelFactory
 }

@@ -2,6 +2,7 @@ package com.ksv.hw16architect.di
 
 import com.ksv.hw16architect.domain.GetUsefulActivityUseCase
 import com.ksv.hw16architect.presentation.MainViewModel
+import com.ksv.hw16architect.presentation.MainViewModelFactory
 import dagger.Module
 import dagger.Provides
 
@@ -13,5 +14,10 @@ class PresentationModule {
         getUsefulActivityUseCase: GetUsefulActivityUseCase
     ): MainViewModel {
         return MainViewModel(getUsefulActivityUseCase)
+    }
+
+    @Provides
+    fun provideMainViewModelFactory(mainViewModel: MainViewModel): MainViewModelFactory{
+        return MainViewModelFactory(mainViewModel)
     }
 }
