@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.ksv.hw16architect.domain.GetUsefulActivityUseCase
 import com.ksv.hw16architect.entity.UsefulActivity
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
