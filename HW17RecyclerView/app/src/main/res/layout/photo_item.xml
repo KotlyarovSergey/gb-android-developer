@@ -28,7 +28,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|left"
                 android:layout_marginLeft="16dp"
-                android:text="Camera: " />
+                android:text="Camera: "
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/tvDate"
@@ -36,8 +37,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
                 android:layout_marginRight="16dp"
-                android:text="Date: " />
-
+                android:text="Date: "
+                android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/tvRover"
                 android:layout_width="wrap_content"
@@ -45,7 +46,8 @@
                 android:layout_gravity="bottom|left"
                 android:layout_marginLeft="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="Rover: " />
+                android:text="Rover: "
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/tvSol"
@@ -54,7 +56,8 @@
                 android:layout_gravity="bottom|right"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="Sol: " />
+                android:text="Sol: "
+                android:textColor="@color/white"/>
 
 
         </androidx.cardview.widget.CardView>

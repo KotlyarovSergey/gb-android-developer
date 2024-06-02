@@ -11,6 +11,6 @@
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.ksv.hw17recyclerview.presentation.RecyclerFragment"/>
+        android:name="com.ksv.hw17recyclerview.presentation.PhotosListFragment"/>
 
 </FrameLayout>
