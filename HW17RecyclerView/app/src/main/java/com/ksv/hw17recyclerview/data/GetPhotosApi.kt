@@ -25,12 +25,6 @@ object RetrofitInstance{
 
 
 interface GetPhotosApi{
-    @GET("/mars-photos/api/v1/rovers/curiosity/photos")
-    suspend fun getPhotos(
-        @Query("sol") sol: Int,
-        @Query("api_key") apiKey: String = API_KEY,
-        @Query("camera") camera: String = CAMERA
-    ): Photos
 
     @GET("/mars-photos/api/v1/rovers/curiosity/photos")
     suspend fun getPhotosResponse(

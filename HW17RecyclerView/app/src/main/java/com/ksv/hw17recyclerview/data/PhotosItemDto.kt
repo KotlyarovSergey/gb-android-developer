@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 
 
 @JsonClass(generateAdapter = true)
-class PhotosItemDto(
+data class PhotosItemDto(
     @Json(name="earth_date") override val earthDate: String,
     @Json(name="id") override val id: Int,
     @Json(name="img_src") override val imgSrc: String,

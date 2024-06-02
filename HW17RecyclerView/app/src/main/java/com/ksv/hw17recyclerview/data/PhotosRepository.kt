@@ -1,17 +1,17 @@
 package com.ksv.hw17recyclerview.data
 
 import android.util.Log
-import com.ksv.hw17recyclerview.entity.DataPhotos
 import com.ksv.hw17recyclerview.entity.PhotoItem
 import com.ksv.hw17recyclerview.entity.Photos
 
 class PhotosRepository {
 
-//    suspend fun getPhotos(soul: Int = 1000): Photos? {
-    suspend fun getPhotos(soul: Int = 1000): DataPhotos? {
+
+    // не работает!!
+    // выпадает исключение Unable to create converter for class com.ksv.hw17recyclerview.data.Photos
+    suspend fun getPhotos(sol: Int = 1000): Photos? {
         try {
-//            val response = RetrofitInstance.getPhotosApiResponse.getPhotosResponse(soul)
-            val response = RetrofitInstance.getPhotosApiResponse.getDataPhotosResponse(soul)
+            val response = RetrofitInstance.getPhotosApiResponse.getPhotosResponse(sol)
             if (response.isSuccessful)
                 return response.body()!!
             else
@@ -23,9 +23,9 @@ class PhotosRepository {
         return null
     }
 
-    suspend fun getPhotosList(soul: Int = 1000): List<PhotoItem> {
+    suspend fun getPhotosList(sol: Int = 1000): List<PhotoItem> {
         try {
-            val response = RetrofitInstance.getPhotosApiResponse.getDataPhotosResponse(soul)
+            val response = RetrofitInstance.getPhotosApiResponse.getDataPhotosResponse(sol)
             return if (response.isSuccessful)
                 response.body()?.photos ?: emptyList()
             else

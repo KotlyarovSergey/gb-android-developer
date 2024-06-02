@@ -6,6 +6,6 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-class PhotosDto(
+data class PhotosDto(
     @Json(name="photos") override val photos: List<PhotosItem>
 ) : Photos
