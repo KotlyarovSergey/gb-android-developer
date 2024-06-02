@@ -29,10 +29,10 @@ class PhotoAdapter(
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val photoItem = data.getOrNull(position)
         with(holder.binding){
-            tvCamera.text = "Camera: ${photoItem?.camera?.name}"
-            tvDate.text = "Date: ${photoItem?.date}"
-            tvSol.text = "Sol: ${photoItem?.sol?.toString()}"
-            tvRover.text = "Rover: ${photoItem?.rover?.name}"
+//            tvCamera.text = "Camera: ${photoItem?.camera?.name}"
+//            tvDate.text = "Date: ${photoItem?.date}"
+//            tvSol.text = "Sol: ${photoItem?.sol?.toString()}"
+//            tvRover.text = "Rover: ${photoItem?.rover?.name}"
             photoItem?.let {
                 Glide
                     .with(image.context)

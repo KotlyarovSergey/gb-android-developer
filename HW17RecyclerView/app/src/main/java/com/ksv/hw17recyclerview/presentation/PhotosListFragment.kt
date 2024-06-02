@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ksv.hw17recyclerview.R
 import com.ksv.hw17recyclerview.databinding.FragmentPhotosListBinding
 import com.ksv.hw17recyclerview.entity.PhotoItem
@@ -41,12 +42,15 @@ class PhotosListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerView.adapter = photoAdapter
-        binding.recyclerView.layoutManager = GridLayoutManager(
-            requireContext(),
-            2,
-            RecyclerView.VERTICAL,
-            false
-        )
+//        binding.recyclerView.layoutManager = GridLayoutManager(
+//            requireContext(),
+//            2,
+//            RecyclerView.VERTICAL,
+//            false
+//        )
+
+        binding.recyclerView.layoutManager =
+            StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
 
         viewModel.photos.onEach {
             photoAdapter.setData(it)
