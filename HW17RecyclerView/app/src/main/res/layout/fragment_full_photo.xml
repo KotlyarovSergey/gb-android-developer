@@ -1,17 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#58C2CC"
         tools:context=".presentation.FullPhotoFragment">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/fullImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#589DCC"
+            app:cardCornerRadius="20dp">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fullImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/tvCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|left"
+                android:layout_marginLeft="16dp"
+                android:text="Camera: "
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="16dp"
+                android:text="Date: "
+                android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/tvRover"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|left"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="Rover: "
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/tvSol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="Sol: "
+                android:textColor="@color/white"/>
+
+        </androidx.cardview.widget.CardView>
     </FrameLayout>
 </layout>

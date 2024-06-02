@@ -20,10 +20,10 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class PhotosListFragment : Fragment() {
-    private val viewModel : PhotoListViewModel by viewModels()
+    private val viewModel: PhotoListViewModel by viewModels()
     private var _binding: FragmentPhotosListBinding? = null
     private val binding get() = _binding!!
-    private val photoAdapter = PhotoAdapter{photoItem -> onItemClick(photoItem) }
+    private val photoAdapter = PhotoAdapter { photoItem -> onItemClick(photoItem) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +53,7 @@ class PhotosListFragment : Fragment() {
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         viewModel.isLoading.onEach { isLoading ->
-            binding.progress.visibility = if(isLoading)
+            binding.progress.visibility = if (isLoading)
                 View.VISIBLE
             else
                 View.GONE
@@ -61,9 +61,15 @@ class PhotosListFragment : Fragment() {
 
     }
 
-    private fun onItemClick(item: PhotoItem){
+    private fun onItemClick(item: PhotoItem) {
         parentFragmentManager.commit {
-            val bundle = bundleOf(FullPhotoFragment.PARAM_URL to item.url)
+            val bundle = bundleOf(
+                FullPhotoFragment.PARAM_URL to item.url,
+                FullPhotoFragment.PARAM_CAMERA to item.camera.name,
+                FullPhotoFragment.PARAM_DATE to item.date,
+                FullPhotoFragment.PARAM_ROVER to item.rover.name,
+                FullPhotoFragment.PARAM_SOL to item.sol.toString()
+            )
             replace<FullPhotoFragment>(R.id.fragmentContainer, args = bundle)
             addToBackStack(FullPhotoFragment::javaClass.name)
         }
