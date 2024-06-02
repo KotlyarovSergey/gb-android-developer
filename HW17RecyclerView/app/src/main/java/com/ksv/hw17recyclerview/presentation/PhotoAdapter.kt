@@ -12,8 +12,9 @@ import com.ksv.hw17recyclerview.entity.PhotoItem
 import com.ksv.hw17recyclerview.entity.PhotosItem
 import com.ksv.hw17recyclerview.util.LinkCorrector
 
-class PhotoAdapter: RecyclerView.Adapter<PhotoViewHolder>() {
-//    private var data : List<DataPhotos> = emptyList()
+class PhotoAdapter(
+    private val onClick: (PhotoItem) -> Unit
+): RecyclerView.Adapter<PhotoViewHolder>() {
     private var data : List<PhotoItem> = emptyList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder {
         return PhotoViewHolder(
@@ -26,23 +27,21 @@ class PhotoAdapter: RecyclerView.Adapter<PhotoViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
-//        val item = data.getOrNull(position)
-//        val photoItem = item?.photos?.firstOrNull()
         val photoItem = data.getOrNull(position)
-
-
         with(holder.binding){
             tvCamera.text = "Camera: ${photoItem?.camera?.name}"
             tvDate.text = "Date: ${photoItem?.date}"
             tvSol.text = "Sol: ${photoItem?.sol?.toString()}"
             tvRover.text = "Rover: ${photoItem?.rover?.name}"
             photoItem?.let {
-                Log.d("ksvlog", "load img $position")
                 Glide
                     .with(image.context)
                     .load(LinkCorrector.change(it.url))
                     .into(image)
             }
+        }
+        holder.binding.root.setOnClickListener {
+            photoItem?.let(onClick)
         }
     }
 

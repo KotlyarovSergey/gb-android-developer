@@ -6,7 +6,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#5CF4FA"
+        android:background="#0E144E"
         tools:context=".presentation.PhotosListFragment">
 
         <androidx.recyclerview.widget.RecyclerView

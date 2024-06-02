@@ -50,8 +50,8 @@ interface GetPhotosApi{
 
     companion object{
         private const val API_KEY = "rf5ijwgbwyTvVqJJOcXOWxBT4ZtPlDhZ7M5NZp8m"
-        private const val CAMERA = "FHAZ"
-//        private const val CAMERA = "NAVCAM"
+//        private const val CAMERA = "FHAZ"
+        private const val CAMERA = "NAVCAM"
     }
 }
 
