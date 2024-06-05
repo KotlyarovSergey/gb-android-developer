@@ -16,6 +16,7 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.ksv.hw18permission.databinding.FragmentPhotoBinding
 import java.text.SimpleDateFormat
@@ -23,13 +24,17 @@ import java.util.Locale
 import java.util.concurrent.Executor
 
 private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss"
+
 class PhotoFragment : Fragment() {
+    private val viewModel: PhotoFragmentViewModel by viewModels()
     private var _binding: FragmentPhotoBinding? = null
     private val binding get() = _binding!!
     private val launcher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            startCamera()
-//            Toast.makeText(requireContext(), "permission is $isGranted", Toast.LENGTH_SHORT).show()
+            viewModel.setPermissionState(isGranted)
+            if (isGranted) {
+                startCamera()
+            }
         }
     private var imageCapture: ImageCapture? = null
     private lateinit var executor: Executor
@@ -52,10 +57,11 @@ class PhotoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         executor = ContextCompat.getMainExecutor(requireContext())
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         checkPermission()
 
         binding.photoButton.setOnClickListener {
-//            requireActivity().supportFragmentManager.popBackStack()
             takePhoto()
         }
     }
@@ -80,28 +86,17 @@ class PhotoFragment : Fragment() {
             executor,
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-//                    Toast.makeText(
-//                        requireContext(),
-//                        "Photo saved on: ${outputFileResults.savedUri}",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-
                     Glide.with(requireContext())
                         .load(outputFileResults.savedUri)
                         .circleCrop()
                         .into(binding.imagePreview)
                 }
-
                 override fun onError(exception: ImageCaptureException) {
-//                    Toast.makeText(
-//                        requireContext(),
-//                        "Photo failed ${exception.message}",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
                     exception.printStackTrace()
                 }
             }
-        )    }
+        )
+    }
 
     private fun checkPermission() {
         if (ContextCompat.checkSelfPermission(
@@ -109,8 +104,8 @@ class PhotoFragment : Fragment() {
                 Manifest.permission.CAMERA
             ) == PackageManager.PERMISSION_GRANTED
         ) {
+            viewModel.setPermissionState(true)
             startCamera()
-//            Toast.makeText(requireContext(), "permission is Granted", Toast.LENGTH_SHORT).show()
         } else {
             launcher.launch(Manifest.permission.CAMERA)
         }
@@ -134,8 +129,4 @@ class PhotoFragment : Fragment() {
             )
         }, executor)
     }
-
-
-
-
 }
