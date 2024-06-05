@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HW18Permission</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="photo_button">фото</string>
+    <string name="new_photo">New photo</string>
+</resources>
