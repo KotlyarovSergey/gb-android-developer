@@ -17,8 +17,12 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.ksv.hw18permission.databinding.FragmentPhotoBinding
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.Executor
@@ -64,38 +68,47 @@ class PhotoFragment : Fragment() {
         binding.photoButton.setOnClickListener {
             takePhoto()
         }
+
+        viewModel.photoUri.onEach {uri ->
+            Glide
+                .with(requireContext())
+                .load(uri)
+                .circleCrop()
+                .into(binding.imagePreview)
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
-
-        val contentValues = ContentValues().apply {
-            put(MediaStore.MediaColumns.DISPLAY_NAME, name)
-            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
-        }
-
-        val outputOptions = ImageCapture.OutputFileOptions
-            .Builder(
-                requireContext().contentResolver,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                contentValues
-            ).build()
-
-        imageCapture.takePicture(
-            outputOptions,
-            executor,
-            object : ImageCapture.OnImageSavedCallback {
-                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    Glide.with(requireContext())
-                        .load(outputFileResults.savedUri)
-                        .circleCrop()
-                        .into(binding.imagePreview)
-                }
-                override fun onError(exception: ImageCaptureException) {
-                    exception.printStackTrace()
-                }
-            }
-        )
+        viewModel.takePhoto(imageCapture, requireContext())
+//
+//        val contentValues = ContentValues().apply {
+//            put(MediaStore.MediaColumns.DISPLAY_NAME, name)
+//            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
+//        }
+//
+//        val outputOptions = ImageCapture.OutputFileOptions
+//            .Builder(
+//                requireContext().contentResolver,
+//                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+//                contentValues
+//            ).build()
+//
+//        imageCapture.takePicture(
+//            outputOptions,
+//            executor,
+//            object : ImageCapture.OnImageSavedCallback {
+//                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+//                    outputFileResults.savedUri?.let { uri ->
+//                        viewModel.takePhotoUri(uri)
+//                    }
+//                }
+//
+//                override fun onError(exception: ImageCaptureException) {
+//                    exception.printStackTrace()
+//                }
+//            }
+//        )
     }
 
     private fun checkPermission() {
