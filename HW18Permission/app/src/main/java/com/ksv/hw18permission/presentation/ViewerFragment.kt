@@ -11,8 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.ksv.hw18permission.R
 import com.ksv.hw18permission.data.App
 import com.ksv.hw18permission.data.PhotoItemDao
@@ -49,16 +47,18 @@ class ViewerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.recyclerView.adapter = photoAdapter
+        viewModel.photos.onEach {
+            photoAdapter.setData(it)
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
         binding.floatingButton.setOnClickListener {
             parentFragmentManager.commit {
                 replace<PhotoFragment>(R.id.frame_container)
                 addToBackStack(PhotoFragment::javaClass.name)
             }
         }
-        binding.recyclerView.adapter = photoAdapter
-        viewModel.photos.onEach {
-            photoAdapter.setData(it)
-        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
 }

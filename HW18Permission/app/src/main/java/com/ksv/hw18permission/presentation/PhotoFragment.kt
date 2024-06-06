@@ -23,16 +23,11 @@ import com.ksv.hw18permission.data.PhotoItemDao
 import com.ksv.hw18permission.databinding.FragmentPhotoBinding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import java.text.SimpleDateFormat
-import java.util.Locale
 import java.util.concurrent.Executor
 
-private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss"
 
 class PhotoFragment : Fragment() {
 //    private val viewModel: PhotoFragmentViewModel by viewModels()
-
-
     private val viewModel: PhotoFragmentViewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -41,8 +36,6 @@ class PhotoFragment : Fragment() {
             }
         }
     }
-
-
     private var _binding: FragmentPhotoBinding? = null
     private val binding get() = _binding!!
     private val launcher =
@@ -54,8 +47,6 @@ class PhotoFragment : Fragment() {
         }
     private var imageCapture: ImageCapture? = null
     private lateinit var executor: Executor
-    private val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
-        .format(System.currentTimeMillis())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

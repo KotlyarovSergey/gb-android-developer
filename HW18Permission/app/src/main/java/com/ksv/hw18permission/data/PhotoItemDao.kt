@@ -9,8 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PhotoItemDao {
-    @Query("SELECT * FROM photos_two")
-//    suspend fun getAll(): List<PhotoItem>
+    @Query("SELECT * FROM photos")
     fun getAll(): Flow<List<PhotoItem>>
 
     @Insert
@@ -18,7 +17,4 @@ interface PhotoItemDao {
 
     @Delete
     suspend fun delete(photoItem: PhotoItem)
-
-//    @Query("DROP TABLE IF EXISTS photos" )
-//    suspend fun dropTable()
 }

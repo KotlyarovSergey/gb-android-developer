@@ -24,6 +24,8 @@
             android:visibility="@{viewModel.isPermissionGranted() ? View.VISIBLE : View.GONE}"
             android:layout_marginBottom="30dp"
             app:cornerRadius="15dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/roundcorner"
             android:src="@drawable/baseline_photo_camera_24"
             android:text="@string/photo_button" />
 
@@ -43,13 +45,14 @@
             android:layout_gravity="center"
             android:visibility="@{viewModel.isPermissionGranted() ? View.GONE : View.VISIBLE}"
             android:src="@drawable/baseline_block_24"/>
-
-        <Button
-            android:id="@+id/button_show"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:text="show" />
+            android:text="@string/permission_msg"
+            android:visibility="@{viewModel.isPermissionGranted() ? View.GONE : View.VISIBLE}"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="16dp"
+            />
 
     </FrameLayout>
     <data>
