@@ -6,6 +6,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#DEDEDF"
         tools:context=".presentation.ViewerFragment">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"
+            app:spanCount="2"
             android:orientation="vertical"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -25,13 +26,6 @@
             android:layout_marginBottom="16dp"
             app:srcCompat="@drawable/baseline_add_24"
             android:contentDescription="@string/new_photo" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Viewer"
-            android:layout_gravity="center"
-            android:textSize="48sp"/>
 
     </FrameLayout>
 </layout>

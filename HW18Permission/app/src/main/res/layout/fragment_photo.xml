@@ -12,7 +12,9 @@
             android:id="@+id/view_finder"
             android:visibility="@{viewModel.isPermissionGranted() ? View.VISIBLE : View.GONE}"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
+
+        </androidx.camera.view.PreviewView>
 
         <ImageButton
             android:id="@+id/photo_button"
@@ -41,6 +43,13 @@
             android:layout_gravity="center"
             android:visibility="@{viewModel.isPermissionGranted() ? View.GONE : View.VISIBLE}"
             android:src="@drawable/baseline_block_24"/>
+
+        <Button
+            android:id="@+id/button_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:text="show" />
 
     </FrameLayout>
     <data>
