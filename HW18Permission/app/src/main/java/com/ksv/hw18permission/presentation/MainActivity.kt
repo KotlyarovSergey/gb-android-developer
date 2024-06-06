@@ -1,7 +1,8 @@
-package com.ksv.hw18permission
+package com.ksv.hw18permission.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ksv.hw18permission.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
